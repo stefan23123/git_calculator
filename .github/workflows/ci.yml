@@ -1,0 +1,21 @@
+name: CI Workflow
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Prejem kode (Checkout)
+      uses: actions/checkout@v3
+
+    - name: Preverjanje obstoja HTML datoteke
+      run: |
+        if [ -f "calculator.html" ]; then
+          echo "Datoteka calculator.html obstaja!"
+        else
+          echo "Napaka: manjkajoča datoteka!"
+          exit 1
+        fi
